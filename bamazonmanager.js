@@ -88,12 +88,55 @@ function addInventory() {
                 function (error) {
                     if (error) throw err;
                     prompt();
-                }
+                },
+                console.log("Inventory Updated!")
             );
             prompt();
         })
 }
 
 function newProduct() {
-
-}
+    inquirer
+      .prompt([
+        {
+          name: "product_name",
+          type: "input",
+          message: "New Product Name."
+        },
+        {
+          name: "department_name",
+          type: "input",
+          message: "Product's Department."
+        },
+        {
+            name: "price",
+            type: "input",
+            message: "Price of Item"
+        },
+        {
+            name: "stock_quantity",
+            type: "input",
+            message: "Number of units in inventory."
+        }
+      ])
+      .then(function(answer) {
+        // when finished prompting, insert a new item into the db with that info
+        connection.query(
+          "INSERT INTO products SET ?",
+          {
+            product_name: answer.product_name,
+            department_name: answer.department_name || null,
+            price: answer.price,
+            stock_quantity: answer.stock_quantity || 0
+          },
+          function(err) {
+            if (err) throw err;
+            console.log("-------------------------------------------------");
+            console.log("Item added to product list.");
+            console.log("-------------------------------------------------");
+            prompt();
+          }
+        );
+      });
+  }
+  
