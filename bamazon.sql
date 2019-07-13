@@ -15,7 +15,7 @@ PRIMARY KEY (item_id)
 INSERT INTO products(product_name, department_name, price, stock_quantity)
 VALUES ("Settlers of Catan", "Games", 40, 100), 
 ("Ticket To Ride", "Games", 35, 75), 
-("Gloomhaven", "Games", 115, 35), 
+("Gloomhaven", "Games", 115, 35products), 
 ("Keyforge", "Games", 10, 50), 
 ("Crokinole", "Games", 150, 10), 
 ("Bicycle", "Outdoors", 65, 35), 

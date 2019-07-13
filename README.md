@@ -28,3 +28,5 @@ node bamazonmanager.js
 
 ## Project Technical Specs
 This application utilizes node.js to run the command-line application.  The applications themselves use javascript, inquirer to guide the user experience, and is supported on the backend by a mysql database that stores the store product lines and available inventory.  
+
+![bAmazon](bamazoncustomer.JPG)
