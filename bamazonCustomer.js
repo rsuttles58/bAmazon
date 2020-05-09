@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 
 //Setting up the connection to mysql.
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     database: "bamazon"
 });
 
-connection.connect(function (err) {
+connection.connect((err) => {
     if (err) throw err;
     start();
 });
@@ -26,7 +26,7 @@ function start() {
                 choices: ["Yes", "No"]
             },
         ])
-        .then(function (answer) {
+        .then((answer) => {
             if (answer.purchase === "Yes") {
                 purchase();
             } else {
@@ -37,7 +37,7 @@ function start() {
 }
 
 function purchase() {
-    connection.query("SELECT * FROM products", function(err, results) {
+    connection.query("SELECT * FROM products",(err, results) => {
         if (err) throw err;
 
         inquirer
@@ -46,8 +46,8 @@ function purchase() {
                 name: "choice",
                 type: "rawlist",
                 choices: function() {
-                    var choiceArray = [];
-                    for (var i = 0; i < results.length; i++) {
+                    let choiceArray = [];
+                    for (let i = 0; i < results.length; i++) {
                         choiceArray.push(results[i].product_name);
                     }
                     return choiceArray;
@@ -60,9 +60,9 @@ function purchase() {
                     message: "How many units would you like to purchase?"
                 }
             ])
-            .then(function(answer) {
-                var chosenProduct;
-                for (var i = 0; i < results.length; i++) {
+            .then((answer) => {
+                let chosenProduct;
+                for (let i = 0; i < results.length; i++) {
                     if (results[i].product_name === answer.choice) {
                         chosenProduct = results[i];
                     }
