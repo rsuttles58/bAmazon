@@ -40,7 +40,7 @@ function prompt() {
 }
 
 function viewProducts() {
-    connection.query("SELECT item_id, product_name, price, stock_quantity FROM products", function (err, res) {
+    connection.query("SELECT item_id, product_name, price, stock_quantity FROM products",  (err, res) => {
         if (err) throw err;
         for (let i = 0; i < res.length; i++) {
             console.log("ID: " + res[i].item_id + " | " + res[i].product_name + " | " + "Price: " + res[i].price)
@@ -50,7 +50,7 @@ function viewProducts() {
 }
 
 function viewLowInventory() {
-    connection.query("SELECT item_id, product_name, price, stock_quantity FROM products WHERE stock_quantity < 5", function (err, res) {
+    connection.query("SELECT item_id, product_name, price, stock_quantity FROM products WHERE stock_quantity < 5", (err, res) => {
         if (err) throw err;
         if (res.length === 0) {
             console.log("-----------------------------------------------------------");
@@ -79,7 +79,7 @@ function addInventory() {
                 message: "How many units would you like to add to current stock?",
             }
         ])
-        .then((answer) => {
+        .then(answer => {
             let itemid = answer.id;
             let invIncrease = answer.quantity;
 
@@ -119,7 +119,7 @@ function newProduct() {
             message: "Number of units in inventory."
         }
       ])
-      .then((answer) => {
+      .then(answer => {
         // when finished prompting, insert a new item into the db with that info
         connection.query(
           "INSERT INTO products SET ?",

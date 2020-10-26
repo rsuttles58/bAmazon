@@ -80,7 +80,7 @@ function purchase() {
                         ],
                     function(error) {
                         if (error) throw err;
-                        var checkoutTotal = chosenProduct.price * answer.quantity;
+                        const checkoutTotal = chosenProduct.price * answer.quantity;
                         console.log("Your order was placed!" + "Your total is: $" + checkoutTotal + ".");
                         start();
                     }
